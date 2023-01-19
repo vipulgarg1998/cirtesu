@@ -34,6 +34,15 @@ public class TeleopBluerob : MonoBehaviour
             yield return null;
         }
 	}
+	
+	void stop_robot(){
+    	this.velocity_msg.linear.x = 0.0;
+    	this.velocity_msg.linear.y = 0.0;
+    	this.velocity_msg.linear.z = 0.0;
+    	this.velocity_msg.angular.x = 0.0;
+    	this.velocity_msg.angular.y = 0.0;
+    	this.velocity_msg.angular.z = 0.0;
+	}
     
     // Update is called once per frame
     void Update()
@@ -42,12 +51,37 @@ public class TeleopBluerob : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.W))
         {
         	this.velocity_msg.linear.x = (float)0.1;
-
-            Debug.Log("Publishing Linear Velocity");
         }
-        if (Input.GetKeyUp(KeyCode.W))
+        else if(Input.GetKeyDown(KeyCode.S) || Input.GetKey(KeyCode.S))
         {
-        	this.velocity_msg.linear.x = 0.0;
+        	this.velocity_msg.linear.x = -(float)0.1;
+        }
+        else if(Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.A))
+        {
+        	this.velocity_msg.linear.y = (float)0.1;
+        }
+        else if(Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.D))
+        {
+        	this.velocity_msg.linear.y = -(float)0.1;
+        }
+        else if(Input.GetKeyDown(KeyCode.U) || Input.GetKey(KeyCode.U))
+        {
+        	this.velocity_msg.linear.z = (float)0.1;
+        }
+        else if(Input.GetKeyDown(KeyCode.J) || Input.GetKey(KeyCode.J))
+        {
+        	this.velocity_msg.linear.z = -(float)0.1;
+        }
+        else if(Input.GetKeyDown(KeyCode.H) || Input.GetKey(KeyCode.H))
+        {
+        	this.velocity_msg.angular.z = (float)1;
+        }
+        else if(Input.GetKeyDown(KeyCode.K) || Input.GetKey(KeyCode.K))
+        {
+        	this.velocity_msg.angular.z = -(float)1;
+        }
+        else {
+        	stop_robot();
         }
         StartCoroutine(publish());
     }

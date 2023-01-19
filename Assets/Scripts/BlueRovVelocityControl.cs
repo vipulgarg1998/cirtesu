@@ -38,9 +38,4 @@ public class BlueRovVelocityControl : MonoBehaviour
 			moveVelocityRigidbody();
 		}
 	} 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

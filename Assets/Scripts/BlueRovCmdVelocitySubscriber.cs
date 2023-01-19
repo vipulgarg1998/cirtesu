@@ -15,7 +15,7 @@ public class BlueRovCmdVelocitySubscriber : MonoBehaviour
 
 	void VelocityChange(RosMessageTypes.Geometry.TwistMsg velocityMsg)
 	{
-		// Debug.Log("" + velocityMsg);
+		//Debug.Log("" + velocityMsg);
 		this.blueRovVelocityControl.moveVelocity(velocityMsg);
 	}
     // Update is called once per frame

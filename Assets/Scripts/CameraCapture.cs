@@ -6,8 +6,8 @@ public class CameraCapture : MonoBehaviour
 	
 	public bool isCaptureEnable = false;
 	public Camera _camera;
-	public int resWidth = 256;
-	public int resHeight = 256;
+	public int resWidth = 640;
+	public int resHeight = 640;
 	public byte[] jpg;
 	
 	
@@ -45,12 +45,12 @@ public class CameraCapture : MonoBehaviour
 		try{
 			RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
 			_camera.targetTexture = rt;
-			Texture2D screenshot = new Texture2D(resWidth, resHeight, TextureFormat.RGB24, false);
+			Texture2D screenshot = new Texture2D(resWidth, resHeight/2, TextureFormat.RGB24, false);
 			_camera.Render();
 			RenderTexture.active = rt;
-			screenshot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
-            Debug.Log(_camera.targetTexture.width);
-            Debug.Log(_camera.targetTexture.height);
+			screenshot.ReadPixels(new Rect(0, resHeight/2, resWidth, resHeight), 0, 0);
+            //Debug.Log(_camera.targetTexture.width);
+            //Debug.Log(_camera.targetTexture.height);
 			_camera.targetTexture = null;
 			RenderTexture.active = null;
 			Destroy(rt);
